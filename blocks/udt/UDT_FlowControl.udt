@@ -1,0 +1,24 @@
+﻿TYPE "UDT_FlowControl"
+VERSION : 0.1
+   STRUCT
+      UDT_FlowControl : Struct
+         lp_x_启用 : Bool := true;
+         lp_x_启动 : Bool;
+         lp_x_停止 : Bool;
+         lp_x_暂停 : Bool;
+         lp_x_复位 : Bool;
+         lp_x_中止 : Bool;
+         lp_x_启动允许 : Bool := true;
+         lp_x_联锁正常 : Bool := true;
+         op_x_就绪 : Bool;
+         op_x_运行中 : Bool;
+         op_x_完成 : Bool;
+         op_x_故障 : Bool;
+         op_x_已暂停 : Bool;
+         op_i_当前步 : Int;
+         op_w_故障代码 : Word;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+
