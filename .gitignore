@@ -4,6 +4,7 @@ Desktop.ini
 *.bak
 *.tmp
 ~$*
+libraries/**/System/~PEData.*
 
 # Keep TIA library internals under libraries/.
 # Do not ignore System/, TMP/, Vci/, XRef/, IM/, or AdditionalFiles/
