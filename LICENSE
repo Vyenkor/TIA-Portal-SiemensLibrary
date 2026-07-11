@@ -2,15 +2,105 @@ Notification-Required Source License v1.0
 
 Copyright (c) 2026 Vyenkor. All rights reserved.
 
-1. PRIOR NOTICE REQUIREMENT
+1. DEFINITIONS
 
-Before using, copying, modifying, adapting, merging, publishing,
-distributing, sublicensing, selling, or incorporating this software or
-any substantial portion of it into another project, the user must send
-prior written notice to the copyright holder.
+"Software" means the source code, documentation, files, and other materials
+contained in this repository, excluding any third-party material identified as
+being governed by a separate license.
+
+"Use" includes copying, executing, modifying, adapting, merging, publishing,
+distributing, sublicensing, selling, deploying, or incorporating the Software,
+in whole or in substantial part, into another project, product, or service.
+
+2. PERMISSION GRANT
+
+Subject to compliance with this License, the copyright holder grants each user
+a non-exclusive, worldwide, revocable, royalty-free license to use, copy,
+modify, and distribute the Software for personal, educational, research,
+internal, or commercial purposes.
+
+3. PRIOR WRITTEN NOTICE REQUIRED
+
+Before beginning any Use of the Software, the user must send written notice to
+the copyright holder.
 
 The notice must include:
 
-- the name or identity of the user or organization;
-- the intended purpose of use;
-- the expected
+- the name or identity of the individual or organization using the Software;
+- the intended purpose and context of use;
+- whether the use is personal, educational, research, internal, or commercial;
+- the project, product, or service in which the Software will be used; and
+- a reasonable description of the expected scope of use.
+
+Notice may be submitted through an issue in this GitHub repository or through
+another contact method publicly provided by the copyright holder.
+
+The user should retain reasonable evidence that the notice was sent.
+
+4. NOTICE IS NOT AN APPROVAL REQUEST
+
+The user does not need to wait for, obtain, or receive approval from the
+copyright holder after sending a complete notice. Permission under this License
+becomes effective when the required notice has been sent.
+
+Silence or failure by the copyright holder to respond does not revoke the
+permission granted by this License, provided that the user has complied with
+all of its terms.
+
+5. ATTRIBUTION AND LICENSE NOTICE
+
+Any copy or substantial portion of the Software that is distributed or made
+available to another person must include:
+
+- the above copyright notice;
+- this License or a clear link to this License; and
+- a statement identifying any significant modifications made by the user.
+
+6. RESTRICTIONS
+
+The user may not:
+
+- use the name, username, logo, or trademarks of the copyright holder to imply
+  endorsement, sponsorship, or affiliation without separate written permission;
+- remove or obscure copyright, attribution, or license notices;
+- represent the original Software as solely authored by the user; or
+- apply legal or technical restrictions that prevent recipients from exercising
+  the rights granted to them under this License, except as required by law.
+
+7. THIRD-PARTY MATERIAL
+
+This License applies only to material for which Vyenkor owns the copyright or
+has authority to license. Third-party files, libraries, examples, trademarks,
+and other materials remain subject to their respective licenses and terms.
+Nothing in this License overrides third-party rights or obligations.
+
+8. TERMINATION
+
+The rights granted by this License terminate automatically if the user fails to
+provide the required prior written notice or materially violates another term
+of this License.
+
+Rights may be restored when the violation is corrected and the required notice
+is sent, unless the copyright holder has provided written notice that the
+violation will not be cured automatically.
+
+9. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+
+IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OF THE SOFTWARE.
+
+10. SOURCE-AVAILABLE STATUS
+
+This is a custom source-available license with a prior-notification condition.
+It is not intended to be represented as an OSI-approved open-source license.
+
+11. ENTIRE LICENSE
+
+This License states the complete permission granted by the copyright holder for
+the Software. Any additional permission, exception, or alternative arrangement
+must be provided separately in writing by the copyright holder.
