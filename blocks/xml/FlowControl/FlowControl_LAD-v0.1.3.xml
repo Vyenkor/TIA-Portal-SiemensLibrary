@@ -1,0 +1,1553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V21" />
+  <DocumentInfo>
+    <Created>2026-07-12T07:47:12.6973272Z</Created>
+    <ExportSetting>None</ExportSetting>
+    <InstalledProducts>
+      <Product>
+        <DisplayName>Totally Integrated Automation Portal</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+      <Product>
+        <DisplayName>SINAMICS Startdrive Advanced</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G110M, G120, G120C, G120D, G120P, G115D</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>SINAMICS Startdrive G130, G150, S120, S150, G200, G220, S200, S210, S220, Innomotics MVD</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>STEP 7 Professional</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+      <OptionPackage>
+        <DisplayName>STEP 7 Safety</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </OptionPackage>
+      <OptionPackage>
+        <DisplayName>Tech WebApplication</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </OptionPackage>
+      <Product>
+        <DisplayName>WinCC Basic/Comfort/Advanced</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+      <Product>
+        <DisplayName>WinCC Professional</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+      <Product>
+        <DisplayName>WinCC Unified</DisplayName>
+        <DisplayVersion>V21</DisplayVersion>
+      </Product>
+    </InstalledProducts>
+  </DocumentInfo>
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <AutoNumber>false</AutoNumber>
+      <Interface>
+        <Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+          <Section Name="Input">
+            <Member Name="使能" Datatype="Bool">
+              <AttributeList>
+                <StringAttribute Name="S7_HiddenAssignment" SystemDefined="true">HideIfNoParamAssigned</StringAttribute>
+              </AttributeList>
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">使能流程控制FB，FALSE时不允许启动</MultiLanguageText>
+              </Comment>
+              <StartValue>1</StartValue>
+            </Member>
+            <Member Name="启动" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">启动命令，条件满足时进入步骤1</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="停止" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">正常停止命令，停止运行并把当前步清零</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="暂停" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">暂停命令，保持当前步不继续推进</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="复位" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">复位命令，清除完成/故障/暂停并把当前步清零</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="中止" Datatype="Bool">
+              <AttributeList>
+                <StringAttribute Name="S7_HiddenAssignment" SystemDefined="true">HideIfNoParamAssigned</StringAttribute>
+              </AttributeList>
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">中止命令，强制退出流程并把当前步清零</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="启动允许" Datatype="Bool">
+              <AttributeList>
+                <StringAttribute Name="S7_HiddenAssignment" SystemDefined="true">HideIfNoParamAssigned</StringAttribute>
+              </AttributeList>
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">启动允许条件，例如安全、气压、伺服Ready等</MultiLanguageText>
+              </Comment>
+              <StartValue>1</StartValue>
+            </Member>
+            <Member Name="联锁正常" Datatype="Bool">
+              <AttributeList>
+                <StringAttribute Name="S7_HiddenAssignment" SystemDefined="true">HideIfNoParamAssigned</StringAttribute>
+              </AttributeList>
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">运行中联锁正常，FALSE时触发故障</MultiLanguageText>
+              </Comment>
+              <StartValue>1</StartValue>
+            </Member>
+          </Section>
+          <Section Name="Output">
+            <Member Name="就绪" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">可启动状态：启用、允许、无运行、无故障、未完成</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="运行中" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">流程运行锁存状态</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="完成" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">流程正常完成，需要复位清除</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="故障" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">流程异常停止，需要复位清除</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="已暂停" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">流程暂停锁存状态</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="当前步" Datatype="Int">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">当前流程步骤号，流程段直接MOVE维护</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="故障代码" Datatype="Word">
+              <AttributeList>
+                <StringAttribute Name="S7_HiddenAssignment" SystemDefined="true">HideIfNoParamAssigned</StringAttribute>
+              </AttributeList>
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">故障代码，257表示运行中联锁断开</MultiLanguageText>
+              </Comment>
+            </Member>
+          </Section>
+          <Section Name="InOut" />
+          <Section Name="Static">
+            <Member Name="启动边沿" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">启动P上升沿指令的边沿存储位</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="完成边沿" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">完成P上升沿线圈的边沿存储位</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="执行条件" Datatype="Bool">
+              <Comment>
+                <MultiLanguageText Lang="zh-CN">运行中和未暂停映射给执行条件</MultiLanguageText>
+              </Comment>
+            </Member>
+            <Member Name="IEC_Timer_0_Instance" Datatype="TON_TIME" Version="1.0">
+              <AttributeList>
+                <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+              </AttributeList>
+            </Member>
+            <Member Name="IEC_Timer_0_Instance_1" Datatype="TON_TIME" Version="1.0">
+              <AttributeList>
+                <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+              </AttributeList>
+            </Member>
+          </Section>
+          <Section Name="Temp" />
+          <Section Name="Constant" />
+        </Sections>
+      </Interface>
+      <MemoryLayout>Optimized</MemoryLayout>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>FlowControl_LAD</Name>
+      <Namespace />
+      <Number>2100</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="3" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="复位" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="中止" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="23">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>0</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="25">
+                  <Constant>
+                    <ConstantType>Word</ConstantType>
+                    <ConstantValue>0</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="故障代码" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="27">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="28">
+                  <Symbol>
+                    <Component Name="已暂停" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="29">
+                  <Symbol>
+                    <Component Name="完成" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="30">
+                  <Symbol>
+                    <Component Name="故障" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="31" />
+                <Part Name="Contact" UId="32" />
+                <Part Name="O" UId="33">
+                  <TemplateValue Name="Card" Type="Cardinality">2</TemplateValue>
+                </Part>
+                <Part Name="Move" UId="34" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+                <Part Name="Move" UId="35" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+                <Part Name="RCoil" UId="36" />
+                <Part Name="RCoil" UId="37" />
+                <Part Name="RCoil" UId="38" />
+                <Part Name="RCoil" UId="39" />
+              </Parts>
+              <Wires>
+                <Wire UId="40">
+                  <Powerrail />
+                  <NameCon UId="31" Name="in" />
+                  <NameCon UId="32" Name="in" />
+                </Wire>
+                <Wire UId="41">
+                  <IdentCon UId="21" />
+                  <NameCon UId="31" Name="operand" />
+                </Wire>
+                <Wire UId="42">
+                  <NameCon UId="31" Name="out" />
+                  <NameCon UId="33" Name="in1" />
+                </Wire>
+                <Wire UId="43">
+                  <IdentCon UId="22" />
+                  <NameCon UId="32" Name="operand" />
+                </Wire>
+                <Wire UId="44">
+                  <NameCon UId="32" Name="out" />
+                  <NameCon UId="33" Name="in2" />
+                </Wire>
+                <Wire UId="45">
+                  <NameCon UId="33" Name="out" />
+                  <NameCon UId="34" Name="en" />
+                  <NameCon UId="35" Name="en" />
+                  <NameCon UId="36" Name="in" />
+                  <NameCon UId="37" Name="in" />
+                  <NameCon UId="38" Name="in" />
+                  <NameCon UId="39" Name="in" />
+                </Wire>
+                <Wire UId="46">
+                  <IdentCon UId="23" />
+                  <NameCon UId="34" Name="in" />
+                </Wire>
+                <Wire UId="47">
+                  <NameCon UId="34" Name="out1" />
+                  <IdentCon UId="24" />
+                </Wire>
+                <Wire UId="48">
+                  <IdentCon UId="25" />
+                  <NameCon UId="35" Name="in" />
+                </Wire>
+                <Wire UId="49">
+                  <NameCon UId="35" Name="out1" />
+                  <IdentCon UId="26" />
+                </Wire>
+                <Wire UId="50">
+                  <IdentCon UId="27" />
+                  <NameCon UId="36" Name="operand" />
+                </Wire>
+                <Wire UId="51">
+                  <IdentCon UId="28" />
+                  <NameCon UId="37" Name="operand" />
+                </Wire>
+                <Wire UId="52">
+                  <IdentCon UId="29" />
+                  <NameCon UId="38" Name="operand" />
+                </Wire>
+                <Wire UId="53">
+                  <IdentCon UId="30" />
+                  <NameCon UId="39" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>复位或中止时一次性清除运行、暂停、完成、故障、当前步和故障代码。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>复位或中止清除流程状态</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="8" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="使能" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="启动" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="启动边沿" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="启动允许" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="25">
+                  <Symbol>
+                    <Component Name="联锁正常" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="27">
+                  <Symbol>
+                    <Component Name="故障" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="28">
+                  <Symbol>
+                    <Component Name="复位" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="29">
+                  <Symbol>
+                    <Component Name="中止" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="30">
+                  <Symbol>
+                    <Component Name="停止" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="31">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="32">
+                  <Symbol>
+                    <Component Name="完成" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="33">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>1</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="34">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="35" />
+                <Part Name="PContact" UId="36" />
+                <Part Name="Contact" UId="37" />
+                <Part Name="Contact" UId="38" />
+                <Part Name="Contact" UId="39">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="40">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="41">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="42">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="43">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="SCoil" UId="44" />
+                <Part Name="RCoil" UId="45" />
+                <Part Name="Move" UId="46" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="47">
+                  <Powerrail />
+                  <NameCon UId="35" Name="in" />
+                </Wire>
+                <Wire UId="48">
+                  <IdentCon UId="21" />
+                  <NameCon UId="35" Name="operand" />
+                </Wire>
+                <Wire UId="49">
+                  <NameCon UId="35" Name="out" />
+                  <NameCon UId="36" Name="pre" />
+                </Wire>
+                <Wire UId="50">
+                  <IdentCon UId="23" />
+                  <NameCon UId="36" Name="bit" />
+                </Wire>
+                <Wire UId="51">
+                  <IdentCon UId="22" />
+                  <NameCon UId="36" Name="operand" />
+                </Wire>
+                <Wire UId="52">
+                  <NameCon UId="36" Name="out" />
+                  <NameCon UId="37" Name="in" />
+                </Wire>
+                <Wire UId="53">
+                  <IdentCon UId="24" />
+                  <NameCon UId="37" Name="operand" />
+                </Wire>
+                <Wire UId="54">
+                  <NameCon UId="37" Name="out" />
+                  <NameCon UId="38" Name="in" />
+                </Wire>
+                <Wire UId="55">
+                  <IdentCon UId="25" />
+                  <NameCon UId="38" Name="operand" />
+                </Wire>
+                <Wire UId="56">
+                  <NameCon UId="38" Name="out" />
+                  <NameCon UId="39" Name="in" />
+                </Wire>
+                <Wire UId="57">
+                  <IdentCon UId="26" />
+                  <NameCon UId="39" Name="operand" />
+                </Wire>
+                <Wire UId="58">
+                  <NameCon UId="39" Name="out" />
+                  <NameCon UId="40" Name="in" />
+                </Wire>
+                <Wire UId="59">
+                  <IdentCon UId="27" />
+                  <NameCon UId="40" Name="operand" />
+                </Wire>
+                <Wire UId="60">
+                  <NameCon UId="40" Name="out" />
+                  <NameCon UId="41" Name="in" />
+                </Wire>
+                <Wire UId="61">
+                  <IdentCon UId="28" />
+                  <NameCon UId="41" Name="operand" />
+                </Wire>
+                <Wire UId="62">
+                  <NameCon UId="41" Name="out" />
+                  <NameCon UId="42" Name="in" />
+                </Wire>
+                <Wire UId="63">
+                  <IdentCon UId="29" />
+                  <NameCon UId="42" Name="operand" />
+                </Wire>
+                <Wire UId="64">
+                  <NameCon UId="42" Name="out" />
+                  <NameCon UId="43" Name="in" />
+                </Wire>
+                <Wire UId="65">
+                  <IdentCon UId="30" />
+                  <NameCon UId="43" Name="operand" />
+                </Wire>
+                <Wire UId="66">
+                  <NameCon UId="43" Name="out" />
+                  <NameCon UId="44" Name="in" />
+                  <NameCon UId="45" Name="in" />
+                  <NameCon UId="46" Name="en" />
+                </Wire>
+                <Wire UId="67">
+                  <IdentCon UId="31" />
+                  <NameCon UId="44" Name="operand" />
+                </Wire>
+                <Wire UId="68">
+                  <IdentCon UId="32" />
+                  <NameCon UId="45" Name="operand" />
+                </Wire>
+                <Wire UId="69">
+                  <IdentCon UId="33" />
+                  <NameCon UId="46" Name="in" />
+                </Wire>
+                <Wire UId="70">
+                  <NameCon UId="46" Name="out1" />
+                  <IdentCon UId="34" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="9" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>启动命令使用P上升沿触点，条件满足时置位运行中、清除完成、把当前步MOVE为1。启动一直为1不会重复触发。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="B" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>启动P上升沿进入步骤1</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="D" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="暂停" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="已暂停" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="24" />
+                <Part Name="Contact" UId="25" />
+                <Part Name="SCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="27">
+                  <Powerrail />
+                  <NameCon UId="24" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="21" />
+                  <NameCon UId="24" Name="operand" />
+                </Wire>
+                <Wire UId="29">
+                  <NameCon UId="24" Name="out" />
+                  <NameCon UId="25" Name="in" />
+                </Wire>
+                <Wire UId="30">
+                  <IdentCon UId="22" />
+                  <NameCon UId="25" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="25" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="23" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>运行中收到暂停命令时锁存暂停状态。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="10" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="11" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>暂停锁存</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="12" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="暂停" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="已暂停" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="24" />
+                <Part Name="Contact" UId="25">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="RCoil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="27">
+                  <Powerrail />
+                  <NameCon UId="24" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="21" />
+                  <NameCon UId="24" Name="operand" />
+                </Wire>
+                <Wire UId="29">
+                  <NameCon UId="24" Name="out" />
+                  <NameCon UId="25" Name="in" />
+                </Wire>
+                <Wire UId="30">
+                  <IdentCon UId="22" />
+                  <NameCon UId="25" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="25" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="23" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="13" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>运行中暂停命令取消时清除暂停状态。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="15" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="16" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>恢复运行清除暂停</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="17" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="联锁正常" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="故障" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="25">
+                  <Constant>
+                    <ConstantType>Word</ConstantType>
+                    <ConstantValue>257</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="故障代码" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="27" />
+                <Part Name="Contact" UId="28">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="SCoil" UId="29" />
+                <Part Name="RCoil" UId="30" />
+                <Part Name="Move" UId="31" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="32">
+                  <Powerrail />
+                  <NameCon UId="27" Name="in" />
+                </Wire>
+                <Wire UId="33">
+                  <IdentCon UId="21" />
+                  <NameCon UId="27" Name="operand" />
+                </Wire>
+                <Wire UId="34">
+                  <NameCon UId="27" Name="out" />
+                  <NameCon UId="28" Name="in" />
+                </Wire>
+                <Wire UId="35">
+                  <IdentCon UId="22" />
+                  <NameCon UId="28" Name="operand" />
+                </Wire>
+                <Wire UId="36">
+                  <NameCon UId="28" Name="out" />
+                  <NameCon UId="29" Name="in" />
+                  <NameCon UId="30" Name="in" />
+                  <NameCon UId="31" Name="en" />
+                </Wire>
+                <Wire UId="37">
+                  <IdentCon UId="23" />
+                  <NameCon UId="29" Name="operand" />
+                </Wire>
+                <Wire UId="38">
+                  <IdentCon UId="24" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <IdentCon UId="25" />
+                  <NameCon UId="31" Name="in" />
+                </Wire>
+                <Wire UId="40">
+                  <NameCon UId="31" Name="out1" />
+                  <IdentCon UId="26" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="18" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="19" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>运行中联锁断开时锁存故障、写入故障代码，并停止运行。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1A" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>联锁断开触发故障</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="1C" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="停止" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="23">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>0</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="25" />
+                <Part Name="RCoil" UId="26" />
+                <Part Name="Move" UId="27" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="28">
+                  <Powerrail />
+                  <NameCon UId="25" Name="in" />
+                </Wire>
+                <Wire UId="29">
+                  <IdentCon UId="21" />
+                  <NameCon UId="25" Name="operand" />
+                </Wire>
+                <Wire UId="30">
+                  <NameCon UId="25" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                  <NameCon UId="27" Name="en" />
+                </Wire>
+                <Wire UId="31">
+                  <IdentCon UId="22" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="23" />
+                  <NameCon UId="27" Name="in" />
+                </Wire>
+                <Wire UId="33">
+                  <NameCon UId="27" Name="out1" />
+                  <IdentCon UId="24" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1D" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>停止命令复位运行中，并把当前步MOVE为0。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="1F" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="20" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>停止命令停止流程</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="21" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="使能" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="启动" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="启动允许" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="联锁正常" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="25">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="故障" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="27">
+                  <Symbol>
+                    <Component Name="中止" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="28">
+                  <Symbol>
+                    <Component Name="就绪" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="29" />
+                <Part Name="Contact" UId="30">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="31" />
+                <Part Name="Contact" UId="32" />
+                <Part Name="Contact" UId="33">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="34">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Contact" UId="35">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Coil" UId="36" />
+              </Parts>
+              <Wires>
+                <Wire UId="37">
+                  <Powerrail />
+                  <NameCon UId="29" Name="in" />
+                </Wire>
+                <Wire UId="38">
+                  <IdentCon UId="21" />
+                  <NameCon UId="29" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <NameCon UId="29" Name="out" />
+                  <NameCon UId="30" Name="in" />
+                </Wire>
+                <Wire UId="40">
+                  <IdentCon UId="22" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+                <Wire UId="41">
+                  <NameCon UId="30" Name="out" />
+                  <NameCon UId="31" Name="in" />
+                </Wire>
+                <Wire UId="42">
+                  <IdentCon UId="23" />
+                  <NameCon UId="31" Name="operand" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="31" Name="out" />
+                  <NameCon UId="32" Name="in" />
+                </Wire>
+                <Wire UId="44">
+                  <IdentCon UId="24" />
+                  <NameCon UId="32" Name="operand" />
+                </Wire>
+                <Wire UId="45">
+                  <NameCon UId="32" Name="out" />
+                  <NameCon UId="33" Name="in" />
+                </Wire>
+                <Wire UId="46">
+                  <IdentCon UId="25" />
+                  <NameCon UId="33" Name="operand" />
+                </Wire>
+                <Wire UId="47">
+                  <NameCon UId="33" Name="out" />
+                  <NameCon UId="34" Name="in" />
+                </Wire>
+                <Wire UId="48">
+                  <IdentCon UId="26" />
+                  <NameCon UId="34" Name="operand" />
+                </Wire>
+                <Wire UId="49">
+                  <NameCon UId="34" Name="out" />
+                  <NameCon UId="35" Name="in" />
+                </Wire>
+                <Wire UId="50">
+                  <IdentCon UId="27" />
+                  <NameCon UId="35" Name="operand" />
+                </Wire>
+                <Wire UId="51">
+                  <NameCon UId="35" Name="out" />
+                  <NameCon UId="36" Name="in" />
+                </Wire>
+                <Wire UId="52">
+                  <IdentCon UId="28" />
+                  <NameCon UId="36" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="22" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>生成就绪输出，表示当前允许启动。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="24" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="25" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>就绪输出</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="26" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="已暂停" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="23">
+                  <Symbol>
+                    <Component Name="执行条件" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="24" />
+                <Part Name="Contact" UId="25">
+                  <Negated Name="operand" />
+                </Part>
+                <Part Name="Coil" UId="26" />
+              </Parts>
+              <Wires>
+                <Wire UId="27">
+                  <Powerrail />
+                  <NameCon UId="24" Name="in" />
+                </Wire>
+                <Wire UId="28">
+                  <IdentCon UId="21" />
+                  <NameCon UId="24" Name="operand" />
+                </Wire>
+                <Wire UId="29">
+                  <NameCon UId="24" Name="out" />
+                  <NameCon UId="25" Name="in" />
+                </Wire>
+                <Wire UId="30">
+                  <IdentCon UId="22" />
+                  <NameCon UId="25" Name="operand" />
+                </Wire>
+                <Wire UId="31">
+                  <NameCon UId="25" Name="out" />
+                  <NameCon UId="26" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="23" />
+                  <NameCon UId="26" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="27" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="29" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>运行中和未暂停映射给执行条件</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="2B" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="执行条件" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="23">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>1</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="TypedConstant" UId="24">
+                  <Constant>
+                    <ConstantValue>T#5s</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LiteralConstant" UId="25">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>2</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="27" />
+                <Part Name="Eq" UId="28">
+                  <TemplateValue Name="SrcType" Type="Type">Int</TemplateValue>
+                </Part>
+                <Part Name="TON" Version="1.0" UId="29">
+                  <Instance Scope="LocalVariable" UId="30">
+                    <Component Name="IEC_Timer_0_Instance" />
+                  </Instance>
+                  <TemplateValue Name="time_type" Type="Type">Time</TemplateValue>
+                </Part>
+                <Part Name="Move" UId="31" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="33">
+                  <Powerrail />
+                  <NameCon UId="27" Name="in" />
+                </Wire>
+                <Wire UId="34">
+                  <IdentCon UId="21" />
+                  <NameCon UId="27" Name="operand" />
+                </Wire>
+                <Wire UId="35">
+                  <NameCon UId="27" Name="out" />
+                  <NameCon UId="28" Name="pre" />
+                </Wire>
+                <Wire UId="36">
+                  <IdentCon UId="22" />
+                  <NameCon UId="28" Name="in1" />
+                </Wire>
+                <Wire UId="37">
+                  <IdentCon UId="23" />
+                  <NameCon UId="28" Name="in2" />
+                </Wire>
+                <Wire UId="38">
+                  <NameCon UId="28" Name="out" />
+                  <NameCon UId="29" Name="IN" />
+                </Wire>
+                <Wire UId="39">
+                  <IdentCon UId="24" />
+                  <NameCon UId="29" Name="PT" />
+                </Wire>
+                <Wire UId="40">
+                  <NameCon UId="29" Name="Q" />
+                  <NameCon UId="31" Name="en" />
+                </Wire>
+                <Wire UId="41">
+                  <NameCon UId="29" Name="ET" />
+                  <OpenCon UId="32" />
+                </Wire>
+                <Wire UId="42">
+                  <IdentCon UId="25" />
+                  <NameCon UId="31" Name="in" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="31" Name="out1" />
+                  <IdentCon UId="26" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>当前步等于1且未暂停时执行步骤1。实际项目可在MOVE前串入完成条件，然后MOVE 2进入步骤2。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="2E" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>步骤1程序段</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="30" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="执行条件" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="23">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>2</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="TypedConstant" UId="24">
+                  <Constant>
+                    <ConstantValue>T#5s</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LiteralConstant" UId="25">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>1000</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="27" />
+                <Part Name="Eq" UId="28">
+                  <TemplateValue Name="SrcType" Type="Type">Int</TemplateValue>
+                </Part>
+                <Part Name="TON" Version="1.0" UId="29">
+                  <Instance Scope="LocalVariable" UId="30">
+                    <Component Name="IEC_Timer_0_Instance_1" />
+                  </Instance>
+                  <TemplateValue Name="time_type" Type="Type">Time</TemplateValue>
+                </Part>
+                <Part Name="Move" UId="31" DisabledENO="false">
+                  <TemplateValue Name="Card" Type="Cardinality">1</TemplateValue>
+                </Part>
+              </Parts>
+              <Wires>
+                <Wire UId="33">
+                  <Powerrail />
+                  <NameCon UId="27" Name="in" />
+                </Wire>
+                <Wire UId="34">
+                  <IdentCon UId="21" />
+                  <NameCon UId="27" Name="operand" />
+                </Wire>
+                <Wire UId="35">
+                  <NameCon UId="27" Name="out" />
+                  <NameCon UId="28" Name="pre" />
+                </Wire>
+                <Wire UId="36">
+                  <IdentCon UId="22" />
+                  <NameCon UId="28" Name="in1" />
+                </Wire>
+                <Wire UId="37">
+                  <IdentCon UId="23" />
+                  <NameCon UId="28" Name="in2" />
+                </Wire>
+                <Wire UId="38">
+                  <NameCon UId="28" Name="out" />
+                  <NameCon UId="29" Name="IN" />
+                </Wire>
+                <Wire UId="39">
+                  <IdentCon UId="24" />
+                  <NameCon UId="29" Name="PT" />
+                </Wire>
+                <Wire UId="40">
+                  <NameCon UId="29" Name="Q" />
+                  <NameCon UId="31" Name="en" />
+                </Wire>
+                <Wire UId="41">
+                  <NameCon UId="29" Name="ET" />
+                  <OpenCon UId="32" />
+                </Wire>
+                <Wire UId="42">
+                  <IdentCon UId="25" />
+                  <NameCon UId="31" Name="in" />
+                </Wire>
+                <Wire UId="43">
+                  <NameCon UId="31" Name="out1" />
+                  <IdentCon UId="26" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="31" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="32" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>当前步等于2且未暂停时执行步骤2。实际项目可在MOVE前串入完成条件，然后MOVE 1000进入完成步。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="33" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>步骤2程序段</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <SW.Blocks.CompileUnit ID="35" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource>
+            <FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+              <Parts>
+                <Access Scope="LocalVariable" UId="21">
+                  <Symbol>
+                    <Component Name="执行条件" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="22">
+                  <Symbol>
+                    <Component Name="当前步" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LiteralConstant" UId="23">
+                  <Constant>
+                    <ConstantType>Int</ConstantType>
+                    <ConstantValue>1000</ConstantValue>
+                  </Constant>
+                </Access>
+                <Access Scope="LocalVariable" UId="24">
+                  <Symbol>
+                    <Component Name="完成" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="25">
+                  <Symbol>
+                    <Component Name="完成边沿" />
+                  </Symbol>
+                </Access>
+                <Access Scope="LocalVariable" UId="26">
+                  <Symbol>
+                    <Component Name="运行中" />
+                  </Symbol>
+                </Access>
+                <Part Name="Contact" UId="27" />
+                <Part Name="Eq" UId="28">
+                  <TemplateValue Name="SrcType" Type="Type">Int</TemplateValue>
+                </Part>
+                <Part Name="PCoil" UId="29" />
+                <Part Name="RCoil" UId="30" />
+              </Parts>
+              <Wires>
+                <Wire UId="31">
+                  <Powerrail />
+                  <NameCon UId="27" Name="in" />
+                </Wire>
+                <Wire UId="32">
+                  <IdentCon UId="21" />
+                  <NameCon UId="27" Name="operand" />
+                </Wire>
+                <Wire UId="33">
+                  <NameCon UId="27" Name="out" />
+                  <NameCon UId="28" Name="pre" />
+                </Wire>
+                <Wire UId="34">
+                  <IdentCon UId="22" />
+                  <NameCon UId="28" Name="in1" />
+                </Wire>
+                <Wire UId="35">
+                  <IdentCon UId="23" />
+                  <NameCon UId="28" Name="in2" />
+                </Wire>
+                <Wire UId="36">
+                  <NameCon UId="28" Name="out" />
+                  <NameCon UId="29" Name="in" />
+                  <NameCon UId="30" Name="in" />
+                </Wire>
+                <Wire UId="37">
+                  <IdentCon UId="25" />
+                  <NameCon UId="29" Name="bit" />
+                </Wire>
+                <Wire UId="38">
+                  <IdentCon UId="24" />
+                  <NameCon UId="29" Name="operand" />
+                </Wire>
+                <Wire UId="39">
+                  <IdentCon UId="26" />
+                  <NameCon UId="30" Name="operand" />
+                </Wire>
+              </Wires>
+            </FlgNet>
+          </NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="36" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="37" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>当前步等于1000时置位完成，并复位运行中。</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="38" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="39" CompositionName="Items">
+                <AttributeList>
+                  <Culture>zh-CN</Culture>
+                  <Text>完成步锁存完成</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="3A" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="3B" CompositionName="Items">
+            <AttributeList>
+              <Culture>zh-CN</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>

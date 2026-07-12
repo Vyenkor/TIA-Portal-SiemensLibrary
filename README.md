@@ -2,58 +2,62 @@
 
 A Siemens TIA Portal V21 library collection for reusable PLC control blocks.
 
-This repository keeps both ready-to-import TIA library archives and source-style exports for review and version tracking.
+This repository keeps ready-to-import TIA library archives, expanded global libraries, XML block exports, and UDT source files for review and version tracking.
 
 ## Contents
 
 ```text
 archives/
-  FlowControl.zal21
-  FlowControl-v0.1.1.zal21
-  MotionControl.zal21
+  FlowControl/
+    FlowControl.zal21
+    FlowControl-v0.1.1.zal21
+    FlowControl-v0.1.2.zal21
+    FlowControl-v0.1.3.zal21
+  MotionControl/
+    MotionControl.zal21
+    MotionControl-v0.1.1.zal21
+  SingleSolCyl/
+    SingleSolCyl.zal21
 
 blocks/
   xml/
-    FlowControl_LAD.xml
-    FlowControl_SCL.xml
-    MotionControl_LAD.xml
+    FlowControl/
+    MotionControl/
+    SingleSolCyl/
   udt/
-    UDT_FlowControl.udt
-    UDT_FlowControl-v0.1.1.udt
-    UDT_MotionControl.udt
+    UDT_FlowControl/
+    UDT_MotionControl/
 
 libraries/
   FlowControl/
-    FlowControl.al21
-    LibraryInfo.txt
-    ...
-  FlowControl-v0.1.1/
-    FlowControl-v0.1.1.al21
-    LibraryInfo.txt
-    ...
+    FlowControl/
+    FlowControl-v0.1.1/
+    FlowControl-v0.1.2/
+    FlowControl-v0.1.3/
   MotionControl/
-    MotionControl_LAD.al21
-    LibraryInfo.txt
-    ...
+    MotionControl/
+    MotionControl-v0.1.1/
+  SingleSolCyl/
+    SingleSolCyl/
 ```
 
 ## Directory Guide
 
 ### `archives/`
 
-Compressed TIA Portal global library archives.
+Compressed TIA Portal global library archives, grouped by library name.
 
 Use these when you want the simplest import path in TIA Portal.
 
 ### `libraries/`
 
-Expanded TIA Portal global library folders.
+Expanded TIA Portal global library folders, grouped by library name and version.
 
 These folders intentionally include TIA internal folders such as `System`, `TMP`, `Vci`, `XRef`, `IM`, and `AdditionalFiles`. Do not delete or ignore these folders when you want the `.al21` library to remain openable in TIA Portal.
 
 ### `blocks/xml/`
 
-XML exports of PLC blocks. These files are the best place to review changes in GitHub.
+TIA Openness XML exports of PLC blocks. These files are the best place to review behavior changes in GitHub.
 
 ### `blocks/udt/`
 
@@ -61,7 +65,7 @@ PLC data type source files used by the libraries.
 
 ## Usage
 
-1. Download the latest `.zal21` file from `archives/` or the GitHub Release page.
+1. Download the required `.zal21` file from `archives/` or the GitHub Release page.
 2. Open TIA Portal V21.
 3. Open the global library or retrieve the archive.
 4. Drag the required blocks or types into your PLC project.
@@ -69,7 +73,9 @@ PLC data type source files used by the libraries.
 ## Notes
 
 - The libraries are intended for TIA Portal V21.
-- `FlowControl-v0.1.1` updates the FlowControl UDT interface names to the `i_` and `o_` naming style.
+- `FlowControl` now includes base, `v0.1.1`, `v0.1.2`, and `v0.1.3` exports.
+- `MotionControl` now includes base and `v0.1.1` exports.
+- `SingleSolCyl` has archive, expanded library, and LAD/SCL XML block exports.
 - Keep XML exports in Git for easier diff and review.
 - Keep `.zal21` archives for convenient reuse.
 - Keep expanded `.al21` library folders complete. Their internal folders are part of the TIA library structure.

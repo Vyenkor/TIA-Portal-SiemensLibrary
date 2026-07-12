@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-07-12
+
+- Reorganized archives, block exports, UDTs, and expanded libraries into per-library folders.
+- Added FlowControl `v0.1.2` and `v0.1.3` archives, XML exports, UDT exports, and expanded libraries.
+- Added MotionControl `v0.1.1` archive, XML export, UDT export, and expanded library.
+- Added SingleSolCyl archive, expanded library, and LAD/SCL XML block exports.
+- Kept all exported library metadata on TIA Portal / STEP 7 V21.
+
 ## v0.1.1 - 2026-07-05
 
 - Added `FlowControl-v0.1.1.zal21` for TIA Portal V21 import.

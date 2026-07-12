@@ -1,0 +1,30 @@
+﻿TYPE "UDT_MotionControl"
+VERSION : 0.1
+   STRUCT
+      UDT_MotionControl : Struct
+         Exe_MC_Reset : Bool;
+         En_MC_Power : Bool;
+         Exe_MC_Home : Bool;
+         Exe_JogFwd : Bool;
+         Exe_JogBwd : Bool;
+         Exe_MC_Abs : Bool;
+         Exe_Halt : Bool;
+         Sp_MC_Home_Position : Real;
+         Sp_MC_Home_Mode : Int;
+         Sp_MC_Power_StartMode : Int;
+         Sp_MC_Power_StopMode : Int;
+         Sp_MC_Jog_Velocity : Real;
+         Sp_MC_Abs_Position : Real;
+         Sp_MC_Abs_Velocity : Real;
+         Output_ActVelocity : Real;
+         Output_ActPosition : Real;
+         Output_StandStill : Bool;
+         Output_MC_Error : Bool;
+         Output_MC_Power_Status : Bool;
+         Output_MC_Abs_Done : Bool;
+         Output_MC_Abs_Busy : Bool;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+

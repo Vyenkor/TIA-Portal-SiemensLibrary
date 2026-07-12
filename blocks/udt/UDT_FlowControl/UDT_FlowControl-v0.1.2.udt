@@ -1,0 +1,24 @@
+﻿TYPE "UDT_FlowControl"
+VERSION : 0.1
+   STRUCT
+      UDT_FlowControl : Struct
+         i_x使能 : Bool := true;
+         i_x启动请求 : Bool;
+         i_x停止请求 : Bool;
+         i_x暂停请求 : Bool;
+         i_x复位请求 : Bool;
+         i_x中止请求 : Bool;
+         i_x允许启动 : Bool := true;
+         i_x联锁正常 : Bool := true;
+         o_x就绪 : Bool;
+         o_x运行中 : Bool;
+         o_x_已完成 : Bool;
+         o_x故障 : Bool;
+         o_x已暂停 : Bool;
+         o_i当前步 : Int;
+         o_w故障代码 : Word;
+      END_STRUCT;
+   END_STRUCT;
+
+END_TYPE
+

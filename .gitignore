@@ -4,6 +4,7 @@ Desktop.ini
 *.bak
 *.tmp
 ~$*
+*.ffs_db
 libraries/**/System/~PEData.*
 
 # Keep TIA library internals under libraries/.
